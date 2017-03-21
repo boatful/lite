@@ -1,0 +1,197 @@
+/* HTA/IE6 CSS DOES NOT UNDERSTAND SELECTORS LIKE: div#please_wait > div */
+/* THIS COULD PROVE CHALLENGING! */
+
+/* HTA/IE6 CSS DOES NOT UNDERSTAND SELECTORS LIKE span:last */
+/* THIS COULD PROVE CHALLENGING! */
+
+/* HTA/IE6 CSS DOES NOT UNDERSTAND SELECTORS LIKE: div#editor div.section div:not(.accordion) */
+/* WE MAY NEED TO LET JQUERY PERFORM THE STYLING ON THE BOXES WE ARE CALLING "cool" OR "normal" */
+
+/* HTA/IE6 CSS DOESN'T UNDERSTAND POSITION: FIXED */
+/* AFTER AN HOUR OR SO, THIS HACK WORKS: */
+/* http://ryanfait.com/resources/fixed-positioning-in-internet-explorer/ */
+/* START OF IE6 HACK */
+html, body {
+	width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+div#wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+div#tools  {
+	width:100%;
+	padding: 1px 1em;
+	height:2em;
+	color:#ffffff;
+	background-color: #000000;
+    position: absolute; /* WITH CSS3 ENABLED, THESE 3 LINES ELIMINATE THE NEED FOR AN IE6 HACK */
+    left: 0px;
+    top: 0px;
+	z-index:55;
+}
+
+* html div#tools  {
+    /* position: absolute; */ /* IE6 HACK */
+}
+/* END OF IE6 HACK */
+
+html, body, thead td, div {
+	margin: 0px;
+	padding: 0px;
+	font-family: "arial";
+	font-size: 11pt;
+}
+
+.tools, div#tools a {
+	width: 150px;
+	background-color: silver;
+	color: navy;
+	display: inline-block;
+	padding: 5px;
+	border: solid 1px white;
+	text-align: center;
+}
+div#editor, div#preview_of_note, div#myfancybox {
+	display: none;
+	margin-top: 50px;
+}
+div#preview_of_note {
+	height: 100%;
+	border: solid black 1px;
+}
+table.bordered_table {
+	border-collapse: collapse;
+}
+table.bordered_table th, table.bordered_table td {
+	 border: 1px solid black;
+}
+td.bordered_table_label {
+	text-align: right;
+}
+td.bordered_table_SOAP {
+	text-align: left !important;
+	font-weight: bold;
+}
+div#editor div.accordion h3 {
+	overflow: hidden; 
+	height: 50px;
+}
+div#editor div.accordion, div#editor div.accordion h3 {
+	clear: both;
+}
+div#editor div.accordion > div { /* WE DOUBT IE6 UNDERSTANDS THIS... */
+	position: relative;
+	/* width: 61px; IF WE ENABLE CSS3 USING <meta http-equiv="x-ua-compatible" content="ie=9">, THEN COMMENT OUT THESE TWO LINES */
+	/* height: 450px; */
+}
+td.ninecats {
+	text-decoration: underline;
+}
+span.bold {
+	font-weight: bold;
+}
+/* h3+div > div { */
+/* div.accordion>div>div[class!='accordion'] { */
+/* div#editor div.section div:not(.accordion)  { */
+div#editor div.floating, div#editor textarea, div#editor input {
+	float: left;
+	text-wrap: wrap;
+	text-align: center;
+	display: block;
+	width: 200px;
+	height: 45px;
+	overflow: hidden;
+	border: solid black 1px;
+	margin: 5px;
+	padding: 5px;
+}
+div#editor div.longform  {
+	width: 90% !important;
+	height: 70px;
+}
+div#editor div.better_right_click  {
+	border-color: red !important;
+}
+
+div#editor div.cool {
+	background-color: teal;
+	color: #ffffff !important;
+}
+/*
+div#editor div.preview {
+	float: none !important;
+	border: none !important;
+	display: inline-block !important;
+	height: 1em !important;
+	width: auto !important;
+	color:#000000;
+	background-color: #ffffff;
+}
+*/
+div#editor div.normal, div#editor textarea.normal, div#editor input.normal {
+	background-color: none;
+	color: #000000;
+}
+div#myfancybox {
+	width: 600px;
+	height: 350px;
+}
+div#myfancybox textarea, div#myfancybox button {
+	width: 90%;
+}
+div#myfancybox textarea {
+	height: 75px;
+	margin-bottom: 1em;
+}
+div#myfancybox input:checkbox {
+	margin-bottom: 1em;
+}
+label#for_cool_checkbox {
+	color: blue;
+	text-decoration: underline;
+}
+div#please_wait {
+	position: absolute;
+	top: 200px;
+	left: 20%;
+	width: 60%;
+	height: 20%;
+}
+div#please_wait div {
+	text-align: center;
+}
+div.fineprint {
+	font-size: 8pt;
+}
+div#load_patient {
+	display: none;
+	width: 440px;
+	background-color: #4FBCAA;
+}
+div#load_patient fieldset.loader { /* ONE TABLE INSIDE EACH OF 2 FIELDSETS, LAST I CHECKED. MAKE THEIR APPEARANCE CONSISTENT */
+	width: 400px;
+}
+div#load_patient td {
+	vertical-align: top;
+}
+div#load_patient button#load_patient_OK {
+	width: 50%;
+}
+td.pipe_character {
+	padding: 0 2em;
+}
+a#function_mapDOM {
+	white-space: pre;
+}
+div#colophon {
+	padding: 1em;
+}
+h3 button {
+	font-size: 9pt !important;
+}

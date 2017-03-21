@@ -1,0 +1,67 @@
+<html>
+<head>
+<script type = "text/javascript">
+function changeColor(color) {
+}
+function SwapData(intCsvFile) {
+	document.getElementById("data").DataURL = "data" + intCsvFile + ".csv";
+	document.getElementById("data").Reset();
+	document.getElementById("mutableData").datasrc="#data";
+	return false;
+}
+function FilterData(strProperty,strFilter) { // e.g. "Gender", "Female"
+	document.getElementById("data").Filter = (strProperty) ? strProperty + " = " + strFilter : "";
+	document.getElementById("data").Reset();
+	document.getElementById("mutableData").datasrc="#data";
+	return false;
+}
+</script>
+</head>
+<body>
+See: <a href = "https://www.599cd.com/tips/hta/advanced/tabulardatacontrol/">https://www.599cd.com/tips/hta/advanced/tabulardatacontrol/</a>
+<br />Beware: The TDC (Tabular Data Control) is apparently deprecated starting with MSIE11, but someone has released a jQuery plug-in worth looking into: <a href = "https://datatables.net/">DataTables - Table plug-in for jQuery</a>
+
+<object id="data" classid="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83">
+	<param name="DataURL" value="data1.csv">
+	<param name="UseHeader" value="True">
+	<param name="TextQualifier" value=",">
+	<param name="SortColumn" value="LastName;FirstName"><!-- "-" to swap order -->
+	<param name="Filter" value="Gender = Male">
+</object>
+
+<h2>Customers</h2>
+[ <a href = "#" onclick = "return SwapData(1)">CSV Data - Original</a> ]
+[ <a href = "#" onclick = "return SwapData(2)">CSV Data - The Shaw Family</a> ]
+[ <a href = "#" onclick = "return SwapData(3)">CSV Data - Original</a> ]
+<br />
+[ <a href = "#" onclick = "return FilterData();">All</a> ]
+[ <a href = "#" onclick = "return FilterData('Gender','Male');">Males Only</a> ]
+[ <a href = "#" onclick = "return FilterData('Gender','Female');">Females Only</a> ]
+[ <a href = "#" onclick = "return FilterData('Gender','F*');">Like F (=F*)</a> ]
+<table id = "mutableData" border='1' width='100%' cellspacing='0' datasrc=#data>
+<thead>
+	<tr>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Gender</th>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<td>
+			<div datafld="FirstName"></div>
+		</td>
+		<td>
+			<div datafld="LastName"></div>
+		</td>
+		<td>
+			<b>
+				<div datafld="Gender"></div>
+			</b>
+		</td>
+	</tr>
+</tbody>
+</table>
+
+</body>
+</html>
